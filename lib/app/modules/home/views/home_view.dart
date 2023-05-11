@@ -17,11 +17,72 @@ class HomeView extends GetView<HomeController> {
         title: const Text('HomeView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: GridView.builder(
+        padding: EdgeInsets.all(20),
+        itemCount: 4,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, mainAxisSpacing: 20, crossAxisSpacing: 20),
+        itemBuilder: (context, index) {
+          late String title;
+          late IconData iconData;
+          late VoidCallback onTab;
+
+          switch (index) {
+            case 0:
+              title = "Add Product";
+              iconData = Icons.post_add_rounded;
+              onTab = () {
+                Get.toNamed(Routes.addProduct);
+              };
+              break;
+            case 1:
+              title = "Product";
+              iconData = Icons.list_alt_rounded;
+              onTab = () {
+                Get.toNamed(Routes.products);
+              };
+              break;
+            case 2:
+              title = "Qr Code";
+              iconData = Icons.qr_code_2_rounded;
+              onTab = () {
+                Get.toNamed(Routes.addProduct);
+              };
+              break;
+            case 3:
+              title = "Catalog";
+              iconData = Icons.document_scanner_rounded;
+              onTab = () {
+                Get.toNamed(Routes.addProduct);
+              };
+              break;
+            default:
+          }
+          return Material(
+            color: Colors.grey.shade300,
+            borderRadius: BorderRadius.circular(20),
+            child: InkWell(
+              onTap: onTab,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: Icon(
+                      iconData,
+                      size: 50,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(title)
+                ],
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {

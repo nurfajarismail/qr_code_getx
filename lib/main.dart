@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             LoadingScreen();
           }
           return GetMaterialApp(
-            title: "Application",
+            title: "QR CODE",
             initialRoute: snapAuth.hasData ? Routes.home : Routes.login,
             getPages: AppPages.routes,
           );
